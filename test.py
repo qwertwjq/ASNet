@@ -95,7 +95,9 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
 begin_time = time()
-
+if os.path.exists( model_name + '.pkl'):
+    print('load model')
+    model.load_state_dict(torch.load( model_name + '.pkl'))
 num = 10000
 num_x = num//10
 test_input_z = torch.ones(num,512)
